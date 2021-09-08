@@ -1,3 +1,3 @@
 node_modules
 .env
-CommandHandlers
+CommandHandlers/songPlayerHandler.js
