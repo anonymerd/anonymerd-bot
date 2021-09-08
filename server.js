@@ -52,7 +52,4 @@ client.on('message', async (message) => {
 });
 
 // Logging in to Discord using client token.
-// client.login(`${process.env.DISCORD_CLIENT_KEY}`);
-
-const token = 'NzUyNDI4NjMzMDQ5NTMwNDA4.X1XfxQ.Rj1gwif3pAOu92PgPr6_BQEMBZ8';
-client.login(token);
+client.login(`${process.env.DISCORD_CLIENT_KEY}`);

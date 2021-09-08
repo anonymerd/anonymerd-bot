@@ -20,14 +20,6 @@ const playSongHandler = async (client, message, messageToBot) => {
     // Fetching the first song.
     const song = results.content[0];
 
-    // Checking if the bot is already in a voice channel.
-    // let connection = NULL;
-    // if (client.voice.connections.size) {
-    //   connection = await message.member.voice.channel.join();
-    // } else {
-    //   connection = client.voice.connections[0];
-    // }
-
     // Joining the voice channel.
     connection = await message.member.voice.channel.join();
 
@@ -45,10 +37,21 @@ const playSongHandler = async (client, message, messageToBot) => {
   }
 };
 
+const stopSongHandler = async (client, message, messageToBot) => {
+  // Leaving the voice channel.
+  message.member.voice.channel.leave(message.member.voice.channel.id);
+  message.channel.send(`Thanks for tuning in!`);
+};
+
 module.exports = [
   {
     name: 'play',
     description: 'Plays the song provided with the command.',
     handler: playSongHandler,
+  },
+  {
+    name: 'stop',
+    description: 'Stops the song and leaves the voice channel.',
+    handler: stopSongHandler,
   },
 ];
