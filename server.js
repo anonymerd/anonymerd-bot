@@ -35,7 +35,7 @@ client.once('ready', () => {
 });
 
 // Setting up events.
-client.on('messageCreate', (message) => {
+client.on('message', async (message) => {
   // Checking for bot prefix.
   if (message.content.substring(0, PREFIX.length) == PREFIX) {
     // Extracting the message from the string.
@@ -46,7 +46,7 @@ client.on('messageCreate', (message) => {
     // Checking if the command exists.
     if (command) {
       // Acting according the provided message by calling the respective handler method.
-      command.handler(client, message, messageToBot);
+      await command.handler(client, message, messageToBot);
     }
   }
 });

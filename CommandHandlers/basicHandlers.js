@@ -14,7 +14,7 @@ const testHandler = (client, message, messageToBot) => {
   message.reply('Working Bitch!');
 };
 
-export default [
+module.exports = [
   {
     name: 'ping',
     description: 'Replies with Pong!',
