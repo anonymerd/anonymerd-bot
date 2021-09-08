@@ -1,0 +1,18 @@
+{
+  "name": "anonymerd-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Rohit Bisht",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "discord.js": "^12.5.3",
+    "youtube-music-api": "^1.0.6",
+    "ytdl-core-discord": "^1.3.1"
+  }
+}
