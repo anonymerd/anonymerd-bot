@@ -6,6 +6,9 @@ const api = new YoutubeMusicApi();
 // Initializing the api.
 api.initalize();
 
+// Contains the current instance of the song.
+let dispatcher;
+
 const playSongHandler = async (client, message, messageToBot) => {
   // Voice only works in guilds, if the message does not come from a guild, we ignore it.
   if (!message.guild) return;
@@ -29,11 +32,30 @@ const playSongHandler = async (client, message, messageToBot) => {
     const link = `https://www.youtube.com/watch?v=${song.videoId}`;
 
     // Playing the song on the voice channel.
-    await connection.play(await ytdl(link, { filter: 'audioonly' }), {
-      type: 'opus',
-    });
+    dispatcher = await connection.play(
+      await ytdl(link, { filter: 'audioonly' }),
+      {
+        type: 'opus',
+      }
+    );
   } else {
     message.reply('You need to join a voice channel first!');
+  }
+};
+
+const pauseSongHandler = async (client, message, messageToBot) => {
+  if (dispatcher) {
+    // Pausing the current instance of the song.
+    dispatcher.pause();
+    message.reply('Paused');
+  }
+};
+
+const resumeSongHandler = async (client, message, messageToBot) => {
+  if (dispatcher) {
+    // Resuming the song.
+    dispatcher.resume();
+    message.reply('Resuming');
   }
 };
 
@@ -48,6 +70,16 @@ module.exports = [
     name: 'play',
     description: 'Plays the song provided with the command.',
     handler: playSongHandler,
+  },
+  {
+    name: 'pause',
+    description: 'Pause the currently playing song.',
+    handler: pauseSongHandler,
+  },
+  {
+    name: 'resume',
+    description: 'Pause the currently playing song.',
+    handler: resumeSongHandler,
   },
   {
     name: 'stop',
