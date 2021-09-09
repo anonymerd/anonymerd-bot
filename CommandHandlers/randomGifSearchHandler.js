@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const gifSearchHandler = async (client, message, messageToBot) => {
+const randomGifSearchHandler = async (client, message, messageToBot) => {
   const searchQuery = messageToBot.substring('gif '.length);
 
   if (searchQuery) {
@@ -34,6 +34,6 @@ module.exports = [
     name: 'gif',
     description:
       'Search for random gifs using the specified keyword with Tenor API.',
-    handler: gifSearchHandler,
+    handler: randomGifSearchHandler,
   },
 ];
